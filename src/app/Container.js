@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectClip } from '../redux/actions';
+import { selectClip, updateNextClip } from '../redux/actions';
 import { getClips, clipSelected, nextClip } from '../redux/selectors';
 import App from './App';
 
@@ -11,5 +11,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { selectClip }
+  { selectClip, updateNextClip }
 )(App);

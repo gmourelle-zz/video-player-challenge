@@ -33,6 +33,7 @@ class VideoPlayer extends Component {
         this.props.nextClip.endTime
       );
       this.video.src = clipFormatted;
+      this.props.OnUpdateNextClip(this.props.nextClip.id);
       this.video.play();
     }
   };
@@ -47,6 +48,17 @@ class VideoPlayer extends Component {
 
   onLoadedData = () => {
     this.setState({ loading: false });
+  };
+  onPause = () => {
+    if (this.props.nextClip) {
+      const clipFormatted = formatSource(
+        this.props.nextClip.startTime,
+        this.props.nextClip.endTime
+      );
+      this.video.src = clipFormatted;
+      this.props.OnUpdateNextClip(this.props.nextClip.id);
+      this.video.play();
+    }
   };
 
   renderSpinner = () => {
@@ -66,7 +78,8 @@ class VideoPlayer extends Component {
       onLoadedData,
       onPlaying,
       onWaiting,
-      hasEnded
+      hasEnded,
+      onPause
     } = this;
     return (
       <Card className={classes.card}>
@@ -74,6 +87,7 @@ class VideoPlayer extends Component {
           width="100%"
           height="400px"
           controls
+          autoPlay
           muted
           src={source}
           ref={c => {
@@ -83,6 +97,7 @@ class VideoPlayer extends Component {
           onWaiting={onWaiting}
           onPlaying={onPlaying}
           onLoadedData={onLoadedData}
+          onPause={onPause}
         />
         {loading && renderSpinner()}
       </Card>

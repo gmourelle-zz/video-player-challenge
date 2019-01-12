@@ -24,6 +24,11 @@ const videoReducer = (state = {}, action) => {
         clipSelected: action.payload.clipFormatted,
         nextClip: getNextClip(action.payload.id, Object.values(state.clips))
       };
+    case actionTypes.UPDATE_NEXT_CLIP:
+      return {
+        ...state,
+        nextClip: getNextClip(action.payload, Object.values(state.clips))
+      };
     default:
       return state;
   }

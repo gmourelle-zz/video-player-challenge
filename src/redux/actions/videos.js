@@ -17,3 +17,7 @@ export const selectClip = clip => ({
   type: actionTypes.CLIP_SELECTED,
   payload: clip
 });
+export const updateNextClip = payload => ({
+  type: actionTypes.UPDATE_NEXT_CLIP,
+  payload: payload
+});
