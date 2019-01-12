@@ -55,9 +55,12 @@ class VideoPlayer extends Component {
         this.props.nextClip.startTime,
         this.props.nextClip.endTime
       );
-      this.video.src = clipFormatted;
+
       this.props.OnUpdateNextClip(this.props.nextClip.id);
-      this.video.play();
+      setTimeout(() => {
+        this.video.src = clipFormatted;
+        this.video.play();
+      }, 3000);
     }
   };
 
